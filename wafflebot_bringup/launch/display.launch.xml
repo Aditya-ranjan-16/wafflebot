@@ -1,6 +1,7 @@
 <launch>
     <arg name="use_sim_time" default="false"/>
     <arg name="urdf_path" default="$(find-pkg-share wafflebot_description)/urdf/wafflebot.urdf"/>
+
     <node
         pkg="robot_state_publisher"
         exec="robot_state_publisher"
@@ -20,6 +21,12 @@
         exec="rviz2"
         name="rviz2"
         output="screen">
-        <param name="rviz_config_dir" value="$(find-pkg-share wafflebot_description)/rviz/model.rviz"/>
+        <param name="rviz_config_dir" value="$(find-pkg-share wafflebot_description)/rviz/botconfig.rviz"/>
     </node>
+
+    <node
+        pkg="tf2_ros"
+        exec="static_transform_publisher"
+        output="screen"
+        args="0 0 0 0 0 0 map base_footprint"/>
 </launch>
